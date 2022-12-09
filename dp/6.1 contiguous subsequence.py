@@ -14,4 +14,11 @@ For the preceding example, the answer would be 10, −5, 40, 10, with a sum of 5
 """
 
 def contiguousSub(lst):
-	return
+	n = len(lst)
+	optimal = [0] * n # base case index 0 = 0
+	for i in range(1,n):
+		optimal[i] = max(0,optimal[i-1] + lst[i])
+	return optimal[n-1]
+
+example = [5, 15, -30, 10, -5, 40, 10]
+print("given %s, the optimal contiguous sum is %d" % (example, contiguousSub(example)))
