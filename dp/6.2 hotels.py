@@ -35,6 +35,18 @@ def hotels(lst):
 	print(opt)
 	return opt[n], path
 
+def hotels2(lst):
+	n = len(lst)
+	opt = [float("inf")] * (n+1)
+	opt[0] = 0
+	lst.insert(0,0)
+
+	for i in range(1,n+1):
+		for j in range(i):
+			diff = (200-(lst[i] - lst[j]))**2 + opt[j]
+			opt[i] = min(opt[i], diff)
+	return opt[n] , []
+
 example = [100,300,400,500, 900]
-res, path = hotels(example)
+res, path = hotels2(example)
 print("for hotels %s the lowest penalty is %d by stopping at hotels %s" % (example, res,path))

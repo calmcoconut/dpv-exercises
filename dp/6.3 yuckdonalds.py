@@ -9,6 +9,8 @@ Give an efficient algorithm to compute the maximum expected total profit subject
 constraints
 """
 
+from collections import defaultdict
+
 def yuck(m,p,k):
 	n = len(m)
 	opt = [0] + [p[i] for i in range(n)]
@@ -21,6 +23,22 @@ def yuck(m,p,k):
 	print(opt)
 	return opt[n-1]
 
+def yuck2(m,p,k):
+	opt = [0] * (m[-1]+1)
+	d = defaultdict(int)
+	opt[0] = p[0]
+	for i in range(len(m)):
+		d[m[i]]= p[i]
+	
+	for i in range(len(opt)):
+		opt[i] = max(opt[i-1], d[i])
+		if i-k >= 0:
+			opt[i] = max(opt[i-1], d[i]+ opt[i-k])
+	print(opt)
+	return opt[-1]
+		
+
+
 stores = 		[1,2,3,4,5]
 store_profit =  [10,4,8,7,11]
 profit = yuck(stores,store_profit, 3)
@@ -29,4 +47,16 @@ print("yuck donalds max profit is: ", profit)
 stores = 		[10,12,44,50,55]
 store_profit =  [10,4,8,7,11]
 profit = yuck(stores,store_profit, 3)
+print("yuck donalds max profit is: ", profit)
+
+print("----")
+
+stores = 		[1,2,3,4,5]
+store_profit =  [10,4,8,7,11]
+profit = yuck2(stores,store_profit, 3)
+print("yuck donalds max profit is: ", profit)
+
+stores = 		[10,12,44,50,55]
+store_profit =  [10,4,8,7,11]
+profit = yuck2(stores,store_profit, 3)
 print("yuck donalds max profit is: ", profit)
