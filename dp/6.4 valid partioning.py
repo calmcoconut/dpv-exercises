@@ -13,10 +13,18 @@ for any string w,
 """
 
 def valid(s, d):
-	return False
+    n = len(s)
+    d = set(d)
+    opt = [False] * (n+1)
+    opt[0]=True
+    for i in range(n+1):
+        for j in range(i):
+            if s[j:i] in d:
+                opt[i] = opt[i-(i-j)]
+    return opt[n]
 
 d = [ 'it', 'was', 'the', 'best', 'of', 'times' ]
-s = "itwasthebestoftimes"
+s = "itwasthebest"
 print(s, "is valid?:",valid(s,d))
 
 s = "ithebest"
