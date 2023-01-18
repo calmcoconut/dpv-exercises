@@ -36,7 +36,6 @@ def yuck2(m,p,k):
 			opt[i] = max(opt[i-1], d[i]+ opt[i-k])
 	print(opt)
 	return opt[-1]
-		
 
 
 stores = 		[1,2,3,4,5]

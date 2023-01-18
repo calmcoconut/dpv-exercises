@@ -23,9 +23,9 @@ def valid(s, d):
                 opt[i] = opt[i-(i-j)]
     return opt[n]
 
-d = [ 'it', 'was', 'the', 'best', 'of', 'times' ]
+d = [ "i", 'it', 'was', 'the', 'best', 'of', 'times' ]
 s = "itwasthebest"
 print(s, "is valid?:",valid(s,d))
 
-s = "ithebest"
+s = "iathebest"
 print(s, "is valid?:", valid(s,d)) # should be false
